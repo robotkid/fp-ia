@@ -1,17 +1,22 @@
 <head>
-    <title>{{ title }}</title>
+    <title>{{ title}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <body>
     <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
+        <header class="App-header"            <p>
+                Brawl Stars Map Tracker
+            </p>
+            <!--source: https://blog.hubspot.com/website/html-text-box -->
             <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
+                <label for="addMaps">Add Map:</label>
+                <input type="text" id="addMaps" name="addMaps" placeholder="Enter Favorite Maps...">
             </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
+            <p>
+                <label for="setEmail">Notifications:</label>
+                <input type="text" id="setEmail" name="setEmail" placeholder="Enter Email Address..."
             </p>
+
         </header>
     </div>
 </body>
