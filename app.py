@@ -3,12 +3,12 @@ import requests
 import json 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return render_template("index.html", title="Brawl Stars Map Tracker")
 
 res = requests.get('https://api.brawlify.com/v1/events')
 response = json.loads(res.text)
+
+#https://stackoverflow.com/questions/31270488/navigating-json-in-python
+
 mapName1a = response['active'][0]['map']['name']
 mapMode1a = response['active'][0]['map']['gameMode']['name']
 print(mapMode1a + ": " + mapName1a);
@@ -27,6 +27,30 @@ print(mapMode4 + ": " + mapName4);
 mapName5 = response['active'][5]['map']['name']
 mapMode5 = response['active'][5]['map']['gameMode']['name']
 print(mapMode5 + ": " + mapName5);
-mapName6 = response['active'][8]['map']['name']
-mapMode6 = response['active'][8]['map']['gameMode']['name']
+mapName6 = response['active'][6]['map']['name']
+mapMode6 = response['active'][6]['map']['gameMode']['name']
 print(mapMode6 + ": " + mapName6);
+mapName7 = response['active'][7]['map']['name']
+mapMode7 = response['active'][7]['map']['gameMode']['name']
+print(mapMode7 + ": " + mapName7);
+mapName8 = response['active'][8]['map']['name']
+mapMode8 = response['active'][8]['map']['gameMode']['name']
+print(mapMode8 + ": " + mapName8);
+mapName9 = response['active'][9]['map']['name']
+mapMode9 = response['active'][9]['map']['gameMode']['name']
+print(mapMode9 + ": " + mapName9);
+
+
+@app.route("/")
+def hello_world():
+    return render_template("index.html", title="Brawl Stars Map Tracker", 
+                           mapName1a=mapName1a, mapMode1a=mapMode1a,
+                           mapName1b=mapName1b, mapMode1b=mapMode1b, 
+                           mapName2=mapName2, mapMode2=mapMode2,
+                           mapName3=mapName3, mapMode3=mapMode3,
+                           mapName4=mapName4, mapMode4=mapMode4,
+                           mapName5=mapName5, mapMode5=mapMode5,
+                           mapName6=mapName6, mapMode6=mapMode6,
+                           mapName7=mapName7, mapMode7=mapMode7,
+                           mapName8=mapName8, mapMode8=mapMode8,
+                           mapName9=mapName9, mapMode9=mapMode9)
