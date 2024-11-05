@@ -1,0 +1,21 @@
+.table-section{
+    border: 2px sold gold;
+    border-radius: 5px;
+    padding: 20px;
+    display: inline-block;
+    font-size: 20px;
+    align-items: center;
+    background-color: darkgray;
+    text-align: center;
+    margin-left: 580px;
+    margin-top: 50px;
+}
+.anchor-button{
+    border: 5px solid gold;
+    border-radius: 5px;
+    padding: 2px;
+    display: inline-block;
+    margin: 10px;
+    font-size: 25px;
+    background-color: burlywood;
+}

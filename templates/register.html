@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type=text/css href=""{{url-for('static', filename='custom.css')}}>
+    <title>BrawlStarsMapTrackerRegistrationForm</title>
+</head>
+<body>
+    <h1 style='text-align: center;color: gold;font-size: 25px;'>Brawl Stars Map Tracker Registration Form</h1>
+    {% for message in form.name.errors%}
+    <div>{{message}}</div>
+    {%endfor%}
+    {% for message in form.passWord.errors%}
+    <div>{{message}}</div>
+    {%endfor%}
+
+
+    <div class="table-section">
+    <table>
+        <tr>
+            <td>{form.name.label}</td>
+            <td>{form.name}</td>
+        </tr>
+        <tr>
+            <td>{{form.passWprd.label}}</td>
+            <td>{{form.passWord}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{form.submit(class="anchor-button")}}</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>

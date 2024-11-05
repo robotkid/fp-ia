@@ -1,8 +1,12 @@
 from flask import Flask, render_template
 import requests
 import json 
+#https://cs50.readthedocs.io/libraries/cs50/python/
+from cs50 import SQL
+from formsubmission import BrawlStarsMapTrackerRegistrationForm
+db=SQL("sqlite:///data.db")
 app = Flask(__name__)
-
+app.secret_key="__privatekey__"
 
 res = requests.get('https://api.brawlify.com/v1/events')
 response = json.loads(res.text)
@@ -40,7 +44,8 @@ mapName9 = response['active'][9]['map']['name']
 mapMode9 = response['active'][9]['map']['gameMode']['name']
 print(mapMode9 + ": " + mapName9);
 
-
+#source - https://stackoverflow.com/questions/68429566/how-to-return-render-template-in-flask
+#names are default because I just added on to the one which already existed for the title
 @app.route("/")
 def hello_world():
     return render_template("index.html", title="Brawl Stars Map Tracker", 
