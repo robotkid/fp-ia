@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type=text/css href=""{{url-for('static', filename='custom.css')}}>
+    <link rel="stylesheet" type=text/css href="{{url_for('static', filename='custom.css')}"}>
     <title>BrawlStarsMapTrackerRegistrationForm</title>
 </head>
 <body>
@@ -14,6 +14,9 @@
     {% for message in form.passWord.errors%}
     <div>{{message}}</div>
     {%endfor%}
+
+    <form action="http://localhost:5000/registrationForm" method='post'>
+        {{form.hidden_tag()}}</form>
 
 
     <div class="table-section">

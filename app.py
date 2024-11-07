@@ -5,8 +5,8 @@ import json
 from cs50 import SQL
 from formsubmission import BrawlStarsMapTrackerRegistrationForm
 db=SQL("sqlite:///data.db")
-app = Flask(__name__)
-app.secret_key="__privatekey__"
+#app = Flask(__name__)
+#app.secret_key="__privatekey__"
 
 res = requests.get('https://api.brawlify.com/v1/events')
 response = json.loads(res.text)
