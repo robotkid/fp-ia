@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type=text/css href="{{url_for('static', filename='custom.css')}"}>
+    <link rel="stylesheet" type=text/css href="{{url_for('static', filename='custom.css')}}">
     <title>BrawlStarsMapTrackerRegistrationForm</title>
 </head>
 <body>
     <h1 style='text-align: center;color: gold;font-size: 25px;'>Brawl Stars Map Tracker Registration Form</h1>
-    {% for message in form.name.errors%}
+    {% for message in form.name.errors %}
     <div>{{message}}</div>
-    {%endfor%}
+    {% endfor %}
+
     {% for message in form.passWord.errors%}
     <div>{{message}}</div>
     {%endfor%}
 
-    <form action="http://localhost:5000/registrationForm" method='post'>
-        {{form.hidden_tag()}}</form>
+    <form action="http://localhost:5000/registrationform" method='post'>
+        {{form.hidden_tag}}</form>
 
 
     <div class="table-section">
     <table>
         <tr>
-            <td>{form.name.label}</td>
-            <td>{form.name}</td>
+            <td>{{form.name.label}}</td>
+            <td>{{form.name}}</td>
         </tr>
         <tr>
-            <td>{{form.passWprd.label}}</td>
+            <td>{{form.passWord.label}}</td>
             <td>{{form.passWord}}</td>
         </tr>
         <tr>

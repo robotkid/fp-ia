@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='custom.css')}}">
+    <title>Brawl Stars Map Tracker Dashboard</title>
+</head>
+<body>
+   <h1>UserDetails</h1>
+   <section class="dashboard-section">
+    <p><strong>Welcome {{name}}!!</strong></p>
+    <h4><a href="{{ url_for('home')}}">Logout</a></h4>
+   </section>
+</html>
