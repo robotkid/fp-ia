@@ -4,10 +4,10 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='custom.css')}}">
     <title>Brawl Stars Map Tracker Dashboard</title>
 </head>
-<body>
-   <h1>UserDetails</h1>
+<body style="background-color:grey;">
+   <h1 style='text-align: center;color: gold;font-size: 45px; font-family:Courier New, monospace;'><strong>Welcome {{name}}!!</strong></h1>
    <section class="dashboard-section">
-    <p><strong>Welcome {{name}}!!</strong></p>
-    <h4><a href="{{ url_for('home')}}">Logout</a></h4>
+    <h4 style="font-size: 30px;text-align: center;"><a href="{{ url_for('home')}}">Go to tracker</a></h4>
+    <h4 style="text-align: center;"><a href="{{ url_for('login')}}">Logout</a></h4>
    </section>
 </html>

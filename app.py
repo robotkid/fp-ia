@@ -16,18 +16,22 @@ response = json.loads(res.text)
 
 
 #source - https://stackoverflow.com/questions/68429566/how-to-return-render-template-in-flask
-#names are default because I just added on to the one which already existed for the title
+#videos for login/registration: https://youtu.be/fPAUGZYU4MA?feature=shared
+#https://www.youtube.com/watch?v=YpKYBG38FbM&list=PLf9umJdQ546h26s7VKQVUir5GoOZ-1JTP&index=12
 @app.route("/")
 
 def defaultHome():
     brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
-    return render_template('index.html',form=brawlStarsMapTrackerRegistrationForm)
+    return render_template('login.html',form=brawlStarsMapTrackerRegistrationForm)
 
-def __init__(self):
-    con=sqlite3.connect('user1.db')
-    c=con.cursor
-    c.execute("CREATE  TABLE user1(name text, passWord text)")
+def create_table():
+    con = sqlite3.connect('user1.db')
+    c = con.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS user1(name text, passWord text)")
     con.commit()
+    con.close()
+
+create_table()
 
 @app.route('/home')
 def home():
@@ -69,7 +73,7 @@ def registrationform():
                     c.execute("INSERT INTO user1 (name,passWord) VALUES (?,?)",(name,passWord))
                     con.commit()
                     con.close()
-                return render_template('login.html')
+                return render_template('successformsubmission.html')
     elif request.method=='GET':
         return render_template('register.html', form=brawlStarsMapTrackerRegistrationForm)
 

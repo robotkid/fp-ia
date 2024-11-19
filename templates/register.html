@@ -6,8 +6,9 @@
     <link rel="stylesheet" type=text/css href="{{url_for('static', filename='custom.css')}}">
     <title>BrawlStarsMapTrackerRegistrationForm</title>
 </head>
-<body>
-    <h1 style='text-align: center;color: gold;font-size: 25px;'>Brawl Stars Map Tracker Registration Form</h1>
+<body style="background-color:grey;">
+    
+    <h1 style='text-align: center;color: gold;font-size: 45px; font-family:Courier New, monospace;'>Register to Brawl Stars Map Tracker</h1>
     {% for message in form.name.errors %}
     <div>{{message}}</div>
     {% endfor %}
@@ -17,24 +18,26 @@
     {%endfor%}
 
     <form action="http://localhost:5000/registrationform" method='post'>
-        {{form.hidden_tag}}</form>
+        {{form.hidden_tag}}
 
 
-    <div class="table-section">
-    <table>
-        <tr>
-            <td>{{form.name.label}}</td>
-            <td>{{form.name}}</td>
-        </tr>
-        <tr>
-            <td>{{form.passWord.label}}</td>
-            <td>{{form.passWord}}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>{{form.submit(class="anchor-button")}}</td>
-        </tr>
-    </table>
+        <div class="table-section">
+        <table>
+            <tr>
+                <td>{{form.name.label}}</td>
+                <td>{{form.name}}</td>
+            </tr>
+            <tr>
+                <td>{{form.passWord.label}}</td>
+                <td>{{form.passWord}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{form.submit(class_="anchor-button")}}</td>
+            </tr>
+        </table>
+        </form>
     </div>
+    <p style = "text-align: center;"><a href="{{ url_for('login')}}">Already have an account? Login here!</a></p>
 </body>
 </html>

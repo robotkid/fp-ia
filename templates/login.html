@@ -4,17 +4,19 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='custom.css')}}">
     <title>Brawl Stars Map Tracker Login</title>
 </head>
-<body>
-    <section class="login-section">
-        <h1>Welcome to Brawl Stars Map Tracker Login Page</h1>
+<body style="background-color:grey;">
+    <h1 style='text-align: center;color: gold;font-size: 45px; font-family:Courier New, monospace;'>Login to Brawl Stars Map Tracker</h1>
+    <section class="table-section">
         <form class="login-form" action="http://127.0.0.1:5000/login" method="POST">
 
             <p>Username:<input type="text" name="name" /></p>
-            <p>PassWord:<input type="text" name="passWord" /></p>
+            <p>Password:<input type="text" name="passWord" /></p>
             <p><input type="submit" name="enter"></p>
         </form>
 
     </section>
+
+    <p style="text-align: center;"><a href="{{ url_for('registrationform')}}">Don't have an account? Register here!</a></p>
     
 </body>
 </html>
