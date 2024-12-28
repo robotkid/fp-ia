@@ -8,13 +8,23 @@
             <h1 style="color:gold; font-family:Courier New, monospace;">Brawl Stars Map Tracker</h1>
             <!--source: https://blog.hubspot.com/website/html-text-box -->
             <p>
-                <label for="addMaps">Add Map:</label>
-                <input type="text" id="addMaps" name="addMaps" placeholder="Enter Favorite Maps...">
-            </p>
-            <p>
-                <label for="setEmail">Notifications:</label>
-                <input type="text" id="setEmail" name="setEmail" placeholder="Enter Email Address...">
-            <!-- </p>
+                <form>
+                    <label for="addMaps">Add Map:</label>
+                    <input type="text" id="addMaps" name="addMaps" placeholder="Enter Favorite Maps..." required>
+                    <button type="submit">Add to Favorites</button>
+                </form>
+                <form>
+                    <label for="setEmail">Set Email for notifications:</label>
+                    <input type="text" id="setEmail" name="setEmail" placeholder="Enter Email Address..." required>
+                    <button type="submit">Set Email</button>
+                </form>
+        </header>
+    </div>
+
+</body>
+
+</html>
+         <!-- </p>
             Current maps: 
             <p>
             {{mapMode1a}} - {{mapName1a}}
@@ -46,10 +56,3 @@
         <p>
             {{mapMode9}} - {{mapName9}}
             </p> -->
-
-        </header>
-    </div>
-
-</body>
-
-</html>

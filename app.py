@@ -24,37 +24,57 @@ def defaultHome():
     brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
     return render_template('login.html',form=brawlStarsMapTrackerRegistrationForm)
 
+def fetch_active_map_names():
+    active_maps = response.get("active", [])
+    active_map_names = [map_info["map"]["name"] for map_info in active_maps if "map" in map_info]
+    
+    return active_map_names
+    
+active_map_names = fetch_active_map_names()
+print("Active maps:", active_map_names)
+
 def create_table():
     con = sqlite3.connect('user1.db')
     c = con.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS user1(name text, passWord text)")
+    c.execute("CREATE TABLE IF NOT EXISTS currentMaps(map_name text)")
+    c.execute("CREATE TABLE IF NOT EXISTS favoriteMaps(user_name text, map_name text)")
     con.commit()
     con.close()
 
 create_table()
 
-@app.route('/home')
+@app.route('/home', methods=['POST','GET'])
 def home():
-    brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
-    return render_template('index.html',form=brawlStarsMapTrackerRegistrationForm)
+        if 'username' not in session:
+             return redirect('/login')
+        username = session['username']
+        print(f"User logged in: {username}")
+        brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
+        return render_template('index.html',form=brawlStarsMapTrackerRegistrationForm)
+        
+
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    if request.method=='POST':
+     if request.method=='POST':
         userName = request.form['name']
         passWord=request.form['passWord']
         con=sqlite3.connect('user1.db')
         c=con.cursor()
         statement=f"SELECT * from user1 WHERE name='{userName}' AND passWord='{passWord}';"
         c.execute(statement)
-        if not c.fetchone():
-            return render_template('login.html')
-        else: 
-            return render_template('dashboard.html',name=userName)
-    else:
+        user = c.fetchone()
+        if user:
+            session['username'] = userName
+            return redirect('/home')
+        else:
+            return render_template('login.html', error="Invalid username or password")
+     else:
         request.method == 'GET'
         return render_template('login.html')
 @app.route('/registrationform', methods=['POST', 'GET'])
+
 def registrationform():
     brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
     con=sqlite3.connect('user1.db')
@@ -76,6 +96,11 @@ def registrationform():
                 return render_template('successformsubmission.html')
     elif request.method=='GET':
         return render_template('register.html', form=brawlStarsMapTrackerRegistrationForm)
+      
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
 
 @app.route('/successformsubmission')
 def successformsubmission():
