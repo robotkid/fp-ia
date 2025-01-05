@@ -8,11 +8,31 @@
             <h1 style="color:gold; font-family:Courier New, monospace;">Brawl Stars Map Tracker</h1>
             <!--source: https://blog.hubspot.com/website/html-text-box -->
             <p>
-                <form>
+                <form method="POST" action="/home">
                     <label for="addMaps">Add Map:</label>
                     <input type="text" id="addMaps" name="addMaps" placeholder="Enter Favorite Maps..." required>
                     <button type="submit">Add to Favorites</button>
                 </form>
+                {% if message %}
+                <p>{{ message }}</p>
+                {% endif %}
+                <div>
+                    <p style="font-size: 20px">Your Favorite Maps</p>
+                    <!--source:https://www.w3schools.com/html/html_lists.asp -->
+                    <ol>
+                        {% for favorite in favorites %}
+                        <li>{{ favorite }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div>
+                    <p style="font-size: 20px">Active Maps</p>
+                    <ul>
+                        {% for map in active_maps %}
+                        <li>{{ map }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
                 <form>
                     <label for="setEmail">Set Email for notifications:</label>
                     <input type="text" id="setEmail" name="setEmail" placeholder="Enter Email Address..." required>
@@ -24,35 +44,4 @@
 </body>
 
 </html>
-         <!-- </p>
-            Current maps: 
-            <p>
-            {{mapMode1a}} - {{mapName1a}}
-            </p>
-            <p>
-            {{mapMode1b}} - {{mapName1b}}
-        </p>
-        <p>
-            {{mapMode2}} - {{mapName2}}
-        </p>
-        <p>
-            {{mapMode3}} - {{mapName3}}
-        </p>
-        <p>
-            {{mapMode4}} - {{mapName4}}
-        </p>
-        <p>
-            {{mapMode5}} - {{mapName5}}
-        </p>
-        <p>
-            {{mapMode6}} - {{mapName6}}
-        </p>
-        <p>
-            {{mapMode7}} - {{mapName7}}
-        </p>
-        <p>
-            {{mapMode8}} - {{mapName8}}
-        </p>
-        <p>
-            {{mapMode9}} - {{mapName9}}
-            </p> -->
+        

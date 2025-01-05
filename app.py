@@ -50,11 +50,42 @@ def home():
              return redirect('/login')
         username = session['username']
         print(f"User logged in: {username}")
-        brawlStarsMapTrackerRegistrationForm=BrawlStarsMapTrackerRegistrationForm()
-        return render_template('index.html',form=brawlStarsMapTrackerRegistrationForm)
+        con = sqlite3.connect('user1.db')
+        c = con.cursor()
+        c.execute("SELECT map_name FROM favoriteMaps WHERE user_name = ?", (username,))
+        user_favorites = [row[0] for row in c.fetchall()]
+        active_map_names = fetch_active_map_names()
+        print(f"Active maps: {active_map_names}")
+        message = None
+        if request.method == 'POST':
+            map_name = request.form.get('addMaps')
+            print(f"Map entered by user: {map_name}")
+            if map_name:
+                if map_name in active_map_names:
+                    c.execute("SELECT * FROM favoriteMaps WHERE user_name = ? AND map_name = ?", (username, map_name))
+                    if c.fetchone():
+                        message = f"'{map_name}' is already in your favorites."
+                    else:
+                        c.execute("INSERT INTO favoriteMaps (user_name, map_name) VALUES (?, ?)", (username, map_name))
+                        con.commit()
+                        message = f"'{map_name}' has been added to your favorites."
+                        c.execute("SELECT map_name FROM favoriteMaps WHERE user_name = ?", (username,))
+                        user_favorites = [row[0] for row in c.fetchall()]
+                else:
+                    message = f"'{map_name}' is not an active map."
+            else:
+                message = "Please enter a valid map name."
+        con.close()
+        brawlStarsMapTrackerRegistrationForm = BrawlStarsMapTrackerRegistrationForm()
+        return render_template(
+            'index.html',
+            form=brawlStarsMapTrackerRegistrationForm,
+            favorites=user_favorites,
+            active_maps=active_map_names,
+            message=message,
+            username=username
+        )
         
-
-
 @app.route('/login', methods=['POST','GET'])
 def login():
      if request.method=='POST':
@@ -106,41 +137,3 @@ def logout():
 def successformsubmission():
     name=session.get('name', None)
     return render_template('successformsubmission.html')
-
-# def hello_world():
-#     return render_template("index.html", title="Brawl Stars Map Tracker", 
-#                            mapName1a=mapName1a, mapMode1a=mapMode1a,
-#                            mapName1b=mapName1b, mapMode1b=mapMode1b, 
-#                            mapName2=mapName2, mapMode2=mapMode2,
-#                            mapName3=mapName3, mapMode3=mapMode3,
-#                            mapName4=mapName4, mapMode4=mapMode4,
-#                            mapName5=mapName5, mapMode5=mapMode5,
-#                            mapName6=mapName6, mapMode6=mapMode6,
-#                            mapName7=mapName7, mapMode7=mapMode7)
-#                            mapName8=mapName8, mapMode8=mapMode8,
-#                            mapName9=mapName9, mapMode9=mapMode9
-
-# mapName1a = response['active'][0]['map']['name']
-# mapMode1a = response['active'][0]['map']['gameMode']['name']
-# print(mapMode1a + ": " + mapName1a);
-# mapName1b = response['active'][1]['map']['name']
-# mapMode1b = response['active'][1]['map']['gameMode']['name']
-# print(mapMode1b + ": " + mapName1b);
-# mapName2 = response['active'][2]['map']['name']
-# mapMode2 = response['active'][2]['map']['gameMode']['name']
-# print(mapMode2 + ": " + mapName2);
-# mapName3 = response['active'][3]['map']['name']
-# mapMode3 = response['active'][3]['map']['gameMode']['name']
-# print(mapMode3 + ": " + mapName3);
-# mapName4 = response['active'][4]['map']['name']
-# mapMode4 = response['active'][4]['map']['gameMode']['name']
-# print(mapMode4 + ": " + mapName4);
-# mapName5 = response['active'][5]['map']['name']
-# mapMode5 = response['active'][5]['map']['gameMode']['name']
-# print(mapMode5 + ": " + mapName5);
-# mapName6 = response['active'][6]['map']['name']
-# mapMode6 = response['active'][6]['map']['gameMode']['name']
-# print(mapMode6 + ": " + mapName6);
-# mapName7 = response['active'][7]['map']['name']
-# mapMode7 = response['active'][7]['map']['gameMode']['name']
-# print(mapMode7 + ": " + mapName7);

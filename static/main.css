@@ -43,3 +43,7 @@ code {
 .small {
     font-size: 0.75rem;
 }
+
+li {
+    font-size: 16px; 
+}
