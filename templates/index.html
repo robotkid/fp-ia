@@ -14,14 +14,18 @@
                     <button type="submit">Add to Favorites</button>
                 </form>
                 {% if message %}
-                <p>{{ message }}</p>
+                <p style="font-size: 20px">{{ message }}</p>
                 {% endif %}
                 <div>
                     <p style="font-size: 20px">Your Favorite Maps</p>
-                    <!--source:https://www.w3schools.com/html/html_lists.asp -->
                     <ol>
                         {% for favorite in favorites %}
-                        <li>{{ favorite }}</li>
+                        <li>
+                            {{ favorite }}
+                            <form action="{{ url_for('remove_favorite', map_name=favorite) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </li>
                         {% endfor %}
                     </ol>
                 </div>
@@ -33,11 +37,21 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <form>
+                <div>
+                    <p style="font-size: 20px">Upcoming Maps</p>
+                    <ul>
+                        {% for map in upcoming_maps %}
+                        <li>{{ map }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form method="POST" action="/home">
                     <label for="setEmail">Set Email for notifications:</label>
                     <input type="text" id="setEmail" name="setEmail" placeholder="Enter Email Address..." required>
                     <button type="submit">Set Email</button>
                 </form>
+
+                <p style="font-size: 20px">Linked Email: {{ email }}</p>
         </header>
     </div>
 
