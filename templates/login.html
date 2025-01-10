@@ -6,15 +6,14 @@
 </head>
 <body style="background-color:grey;">
     <h1 style='text-align: center;color: gold;font-size: 45px; font-family:Courier New, monospace;'>Login to Brawl Stars Map Tracker</h1>
-    <section class="table-section">
+    <div class="table-section">
         <form class="login-form" action="http://127.0.0.1:5000/login" method="POST">
-
-            <p>Username:<input type="text" name="name" /></p>
-            <p>Password:<input type="text" name="passWord" /></p>
-            <p><input type="submit" name="enter"></p>
+            <p>Username:<input type="text" name="name" required/></p>
+            <p>Password:<input type="text" name="passWord" required/></p>
+            <p><input class="anchor-button" type="submit" name="enter" value="Log In"></p>
         </form>
 
-    </section>
+    </div>
 
     <p style="text-align: center;"><a href="{{ url_for('registrationform')}}">Don't have an account? Register here!</a></p>
     

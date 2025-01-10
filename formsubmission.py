@@ -6,6 +6,6 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import ValidationError, DataRequired
 
 class BrawlStarsMapTrackerRegistrationForm(form.Form):
-    name=StringField(label="Username",validators=[DataRequired()])
-    passWord=PasswordField(label="Password",validators=[DataRequired()])
+    name=StringField(label="Username:",validators=[DataRequired()])
+    passWord=PasswordField(label="Password:",validators=[DataRequired()])
     submit=SubmitField("Confirm")
