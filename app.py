@@ -175,9 +175,9 @@ def notify():
     active_map_names = fetch_active_map_names()
     notify_users(active_map_names)
 
-scheduler.add_job(func=notify, trigger='interval', seconds = 120, id='notifs')
-scheduler.start()
-app.run(debug=True)
+# scheduler.add_job(func=notify, trigger='interval', seconds = 120, id='notifs')
+# scheduler.start()
+# app.run(debug=True)
 
 
 #email app password: hxqg qban uwxu spns
