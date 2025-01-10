@@ -108,7 +108,7 @@ def home():
             username=username,
             email=user_email
         )
-@app.route('/remove_favorite', methods=['POST'])
+@app.route('/remove_favorite/<map_name>', methods=['POST'])
 def remove_favorite(map_name):
     if 'username' not in session:
         return redirect('/login')
